@@ -61,8 +61,8 @@ The framework is designed to allow developers to easily add new API tests.
 ### Step 1: Clone the Repository
 
 ```bash
-git clone <repository_url>
-cd <repository_folder>
+git clone https://github.com/nolemb/FastAPI_testing_NeuReality
+cd FastAPI_testing_NeuReality/app/tests/
 ```
 
 ### Step 2: Run the Tests
@@ -117,11 +117,10 @@ def test_new_api():
   the API call you implemented.
 
 ```python
-# This is a generic example
-@app.get("/end_point", response_model=GenericResponse)
-def new_api_call():
-    # API call implementation
-    response = GenericResponse(data=`new_api_call_response`)
+@app.get("/reverse", response_model=GenericResponse)
+def reverse_string(user_input: Annotated[str, Query(alias="in")]):
+    reversed_input = " ".join(user_input.split()[::-1])
+    response = GenericResponse(data={"result": reversed_input})
     set_last_response(response)  # Store the last response
     return response
 ```
@@ -131,7 +130,7 @@ def new_api_call():
 ## Explanation of Files
 
 - Dockerfile: Builds the FastAPI app container.
-- app.py: Directory containing the FastAPI app code.
+- app: Directory containing the FastAPI app code.
 - test_api.py: Pytest-based test framework for API testing.
 - requirements.txt: Python dependencies for both the app and tests.
 - README.md: This file, providing documentation.

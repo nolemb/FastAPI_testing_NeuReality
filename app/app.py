@@ -4,7 +4,6 @@ from typing import Annotated
 from typing import Any
 
 app = FastAPI()
-last_result = None
 
 
 class GenericResponse(BaseModel):
@@ -39,5 +38,3 @@ def restore_last_result():
     Return the last stored response.
     """
     return get_last_response()
-
-
